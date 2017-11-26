@@ -27,8 +27,8 @@ public class Main {
                     int res = Sender.getInstance().send(Utils.getURL() + "/add", message);
                     if (res != 200) { // 200 OK
                         System.out.println("HTTP error occurred: " + res);
+                        return;
                     }
-                    return;
                 }
             }
         } catch (IOException ex) {
