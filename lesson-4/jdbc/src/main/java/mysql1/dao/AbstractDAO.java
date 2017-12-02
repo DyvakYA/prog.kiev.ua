@@ -72,7 +72,6 @@ public class AbstractDAO<T> {
 
     public void create(Class<T> cls, T t)
             throws IllegalAccessException, InstantiationException, NoSuchFieldException {
-        T client = (T) cls.newInstance();
         Field[] fields = cls.getDeclaredFields();
         String stringFields = toStringFields(fields);
         String stringParameters = toStringCountParameters(fields);
@@ -86,7 +85,6 @@ public class AbstractDAO<T> {
 
     public void update(Class<T> cls, T t, long id)
             throws IllegalAccessException, InstantiationException, NoSuchFieldException {
-        T client = (T) cls.newInstance();
         Field[] fields = cls.getDeclaredFields();
         String s = toStringFields(fields);
         try (PreparedStatement query = connection.prepareStatement(UPDATE + table + SET + s + WHERE + ID)) {
