@@ -18,6 +18,7 @@ public class DbServlet extends HttpServlet {
 
         EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
         DaoInterface dao = new DaoClient(emf);
+        
         String[] ids = req.getParameterValues("id");
         for(String id: ids){
             dao.delete(Integer.parseInt(id));
