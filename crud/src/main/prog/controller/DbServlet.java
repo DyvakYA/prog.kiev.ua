@@ -18,8 +18,10 @@ public class DbServlet extends HttpServlet {
 
         EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
         DaoInterface dao = new DaoClient(emf);
-
-        dao.delete(Integer.parseInt(req.getParameter("id")));
+        String[] ids = req.getParameterValues("id");
+        for(String id: ids){
+            dao.delete(Integer.parseInt(id));
+        }
         req.setAttribute("list", dao.get());
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
